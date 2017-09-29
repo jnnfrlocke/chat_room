@@ -1,0 +1,6 @@
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\bin\Debug\ChatRoom.exe.config
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\bin\Debug\ChatRoom.exe
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\bin\Debug\ChatRoom.pdb
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\Client.csprojResolveAssemblyReference.cache
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\ChatRoom.exe
+c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\ChatRoom.pdb
