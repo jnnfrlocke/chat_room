@@ -52,9 +52,12 @@ namespace ChatRoom
         //}
         private void SendUserIDAnswer()
         {
-            string userID = UI.GetInput();
-            byte[] enteredUserID = Encoding.ASCII.GetBytes(userID);
-            stream.Write(enteredUserID, 0, enteredUserID.Count());
+            byte[] userNameRequest = new byte[256];
+            stream.Read(userNameRequest, 0, userNameRequest.Count());
+            UI.DisplayMessage(Encoding.ASCII.GetString(userNameRequest));
+            string newUser = UI.GetInput();
+            byte[] newUsr = Encoding.ASCII.GetBytes(newUser);
+            stream.Write(newUsr, 0, newUsr.Count());
         }
 
         public void Send()
