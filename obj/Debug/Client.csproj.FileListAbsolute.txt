@@ -4,3 +4,4 @@ c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\bin\Debug\ChatRoom
 c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\Client.csprojResolveAssemblyReference.cache
 c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\ChatRoom.exe
 c:\users\jnnfr\documents\visual studio 2015\Projects\ChatRoom\obj\Debug\ChatRoom.pdb
+C:\Users\jnnfr\Documents\Visual Studio 2015\Projects\ChatRoom\obj\Debug\Client.csproj.CoreCompileInputs.cache
