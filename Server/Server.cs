@@ -25,14 +25,15 @@ namespace Server
 
         }
 
-        public void Run()
+        public async void Run()
         {
-            AcceptClient();
+            Task establishConnection = AcceptClient();
+            await establishConnection;
             client.GetUser();
             //run main chat method
         }
 
-        public void AcceptClient() //this should go in a thread
+        public Task AcceptClient() //this should go in a thread
         {
             TcpClient clientSocket = default(TcpClient); 
             clientSocket = server.AcceptTcpClient();
