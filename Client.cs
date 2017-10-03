@@ -33,7 +33,6 @@ namespace ChatRoom
             UI.DisplayMessage(Encoding.ASCII.GetString(connectionMessage));
             SendUserIDAnswer();
         }
-
         
 
         private void SendUserIDAnswer()
@@ -44,12 +43,13 @@ namespace ChatRoom
             string newUser = UI.GetInput();
             byte[] newUsr = Encoding.ASCII.GetBytes(newUser);
             stream.Write(newUsr, 0, newUsr.Length);
+            GetUserName();
         }
 
         private void GetUserName()
         {
             Recieve();
-            Send();
+            //Send();
         }
 
         private void Chat()

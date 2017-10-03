@@ -29,72 +29,70 @@ namespace Server
         {
             AcceptClient();
             client.GetUser();
-            //string message = client.ReceiveMessage(); //Server - Client, get message
-            
-            //Respond(message);
+            //run main chat method
         }
 
-        public void AcceptClient()
+        public void AcceptClient() //this should go in a thread
         {
             TcpClient clientSocket = default(TcpClient); 
             clientSocket = server.AcceptTcpClient();
             VerifyConnection(clientSocket);
-            //KeepConnectionOpen();
-            //while (true)
-            //{
-            //    clientSocket = server.AcceptTcpClient();
-            //    byte[] input = new byte[256];
-            //    //string usrInput = stream.Read(input, 0, input.Length).ToString();
-            //    string inputCommand = Encoding.ASCII.GetString(input);
-            //    if (inputCommand.Equals("exit"))
-            //    {
-            //        break;
-            //    }
-            //}
         }
-          
-            //public void KeepConnectionOpen()
-            //{
-            //    client.GetUser();
-            //    while (true)
-            //    {
-            //        byte[] input = new byte[256];
-            //        //string usrInput = stream.Read(input, 0, input.Length).ToString();
-            //        string inputCommand = Encoding.ASCII.GetString(input);
-            //        if (inputCommand.Equals("exit"))
-            //        {
-            //            break;
-            //        }
-
-            //        //byte[] buffSend = Encoding.ASCII.GetBytes(inputCommand);
-
-            //        //client.Send(inputCommand);
-
-            //        //byte[] buffReceived = new byte[256];
-            //        //int nRecv = client.ReceiveMessage(buffReceived);
-
-            //        //Console.WriteLine($"Data received: {Encoding.ASCII.GetString(buffReceived, 0, nRecv)}");
-
-            //    }
-            //}
 
         public void VerifyConnection(TcpClient clientSocket)
         {
-            string connectionMessage = "Connected\n";
+            string connectionMessage = "Connected";
             byte[] connectionMsg = Encoding.ASCII.GetBytes(connectionMessage);
-            //NetworkStream stream;
             stream = clientSocket.GetStream();
             stream.Write(connectionMsg, 0, connectionMsg.Length);
-            //Netw/*orkStream */stream = clientSocket.GetStream();
             client.AddNewClient(stream, clientSocket);
-            //string user = GetUser();
-            //KeepConnectionOpen();
         }
 
-        public void Respond(string newMessage)
-        {
-            client.Send(newMessage); //maybe Client - Client??
-        }
+
+
+        //public void Respond(string newMessage)
+        //{
+        //    client.Send(newMessage); //maybe Client - Client??
+        //}
+
+
+        //KeepConnectionOpen();
+        //while (true)
+        //{
+        //    clientSocket = server.AcceptTcpClient();
+        //    byte[] input = new byte[256];
+        //    //string usrInput = stream.Read(input, 0, input.Length).ToString();
+        //    string inputCommand = Encoding.ASCII.GetString(input);
+        //    if (inputCommand.Equals("exit"))
+        //    {
+        //        break;
+        //    }
+        //}
+
+        //public void KeepConnectionOpen()
+        //{
+        //    client.GetUser();
+        //    while (true)
+        //    {
+        //        byte[] input = new byte[256];
+        //        //string usrInput = stream.Read(input, 0, input.Length).ToString();
+        //        string inputCommand = Encoding.ASCII.GetString(input);
+        //        if (inputCommand.Equals("exit"))
+        //        {
+        //            break;
+        //        }
+
+        //        //byte[] buffSend = Encoding.ASCII.GetBytes(inputCommand);
+
+        //        //client.Send(inputCommand);
+
+        //        //byte[] buffReceived = new byte[256];
+        //        //int nRecv = client.ReceiveMessage(buffReceived);
+
+        //        //Console.WriteLine($"Data received: {Encoding.ASCII.GetString(buffReceived, 0, nRecv)}");
+
+        //    }
+        //}
 
     }
 }

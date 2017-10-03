@@ -8,7 +8,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//using ChatRoom;
+
 
 namespace Server
 {
@@ -18,18 +18,7 @@ namespace Server
         TcpClient client;
         public string UserId;
         public int userID;
-
-        //public void SendMesage(byte[] message)
-        //{
-        //    stream.Write(message, 0, message.Length);
-        //}
-        //public void GetInput()
-        //{
-        //    byte[] receivedInput = new byte[256];
-        //    stream.Read(receivedInput, 0, receivedInput.Length);
-        //    string receivedString = Encoding.ASCII.GetString(receivedInput).TrimEnd('\0');
-        //}
-
+        
         public void Send(string newMessage)
         {
             byte[] message = Encoding.ASCII.GetBytes(newMessage);
@@ -70,17 +59,13 @@ namespace Server
                 string userToAdd = Encoding.ASCII.GetString(usrName).TrimEnd('\0');
                 AddUserToDictionary(userToAdd);
  
-                // TODO: get userID from server
-                string newUserName = $"Your user ID is {newID}. Keep this handy to login again. \nPress enter to continue.";//stream
-                //byte[] newUsrName = Encoding.ASCII.GetBytes(newUserName);
+                string newUserName = $"{userToAdd} Your user ID is {newID}. Keep this handy to login again. \nPress enter to continue.";
                 Send(newUserName);
-                //Console.ReadLine();//stream
                 return newUsr;
             }
             else if (newUsr == "no" || newUsr == "n")
             {
                 string askUserId = "Please enter your user ID.";
-                //byte[] askForUserID = Encoding.ASCII.GetBytes(askUserId);
                 Send(askUserId);
                 byte[] currentUser = new byte[256];
                 stream.Read(currentUser, 0, currentUser.Length);
@@ -104,18 +89,7 @@ namespace Server
         //    string message = 
         //    Send();
         //}
-
-        //private int userID;
-        //private string userName;
-        // TODO: get username through network stream
-        //TODO: dynamically create userID if new user
-
-        //Dictionary<int, string> users = new Dictionary<int, string>(); //instantiate dictionary
-
-        //public void AddUsers()
-        //{
-        //    users.Add(userID, userName); //Make this dynamic later
-        //} 
+        
 
         //    public void newUserInChatRoom()
         //{
@@ -128,15 +102,16 @@ namespace Server
         public int AddUserToDictionary(string userName)
         {
             dictionary.Add(CreateUserID(), userName);
+            SaveUserToFile();
             // save to file
             return newID;
         }
 
-        public void SaveUserToFile(int newId, string userName)
+        public void SaveUserToFile()
         {
             //StringBuilder userInfo = new StringBuilder();
             //foreach (KeyValuePair<int, string>)
-            File.WriteAllLines(@"C:\Users\jnnfr\Documents\Visual Studio 2015\Projects\ChatRoom\Server\Users.txt", dictionary.Select(kvp => string.Format(kvp.Key.ToString(), kvp.Value)));
+            File.AppendAllLines(@"C:\Users\jnnfr\Documents\Visual Studio 2015\Projects\ChatRoom\Server\Users.txt", dictionary.Select(kvp => string.Format("{0};{1}", kvp.Key, kvp.Value)));
         }
 
         private int CreateUserID()

@@ -32,7 +32,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Built With
 
-* [Visual Studio]https://www.visualstudio.com/) - IDE
+* [Visual Studio] https://www.visualstudio.com/ - IDE
+* [Trello] https://trello.com/b/86gCdXx5 - Agile Project Management 
 
 ## Contributing
 
