@@ -53,18 +53,18 @@ namespace ChatRoom
         private void SendUserIDAnswer()
         {
             byte[] userNameRequest = new byte[256];
-            stream.Read(userNameRequest, 0, userNameRequest.Count());
+            stream.Read(userNameRequest, 0, userNameRequest.Length);
             UI.DisplayMessage(Encoding.ASCII.GetString(userNameRequest));
             string newUser = UI.GetInput();
             byte[] newUsr = Encoding.ASCII.GetBytes(newUser);
-            stream.Write(newUsr, 0, newUsr.Count());
+            stream.Write(newUsr, 0, newUsr.Length);
         }
 
         public void Send()
         {
             string messageString = UI.GetInput();
             byte[] message = Encoding.ASCII.GetBytes(messageString);
-            stream.Write(message, 0, message.Count());
+            stream.Write(message, 0, message.Length);
         }
 
         public void Recieve()
