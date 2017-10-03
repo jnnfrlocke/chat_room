@@ -34,11 +34,12 @@ namespace Server
             byte[] newUser = new byte[256];
             stream.Read(newUser, 0, newUser.Length);
 
-            string newUsr = Encoding.ASCII.GetString(newUser).ToLower();
+            string newUsr = Encoding.ASCII.GetString(newUser).ToLower().TrimEnd('\0');
             //string newUser = Console.ReadLine().ToLower();
             if (newUsr == "yes" || newUsr == "y")
             {
-                byte[] userName = new byte[256];
+                string askForUserName = "Please choose and enter your user name.";
+                byte[] userName = Encoding.ASCII.GetBytes(askForUserName);
                 stream.Write(userName, 0, userName.Count());
 
                 byte[] usrName = new byte[256];
