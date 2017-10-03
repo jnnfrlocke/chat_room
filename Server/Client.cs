@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+//using ChatRoom;
 
 namespace Server
 {
@@ -29,13 +30,11 @@ namespace Server
             string askIfNewUser = "Are you a new user?";
             byte[] newUserQuestion = Encoding.ASCII.GetBytes(askIfNewUser);
             stream.Write(newUserQuestion, 0, newUserQuestion.Length);
-
             
             byte[] newUser = new byte[256];
             stream.Read(newUser, 0, newUser.Length);
 
             string newUsr = Encoding.ASCII.GetString(newUser).ToLower().TrimEnd('\0');
-            //string newUser = Console.ReadLine().ToLower();
             if (newUsr == "yes" || newUsr == "y")
             {
                 string askForUserName = "Please choose and enter your user name.";
@@ -44,11 +43,14 @@ namespace Server
 
                 byte[] usrName = new byte[256];
                 stream.Read(usrName, 0, usrName.Count());
+                string userToAdd = Encoding.ASCII.GetString(usrName).TrimEnd('\0');
+                Dictionary newDict = new Dictionary();
+                newDict.AddUserToDictionary(userToAdd);
                 //string usrName = Encoding.ASCII.GetBytes(Encoding.ASCII.GetString(usrName)); // TODO: then assign user id on server
                 stream.Write(userName, 0, userName.Count()); //send/save to dictionary on server
                 // TODO: get userID from server
-                Console.WriteLine($"Your user ID is {userID}. Keep this handy to login again. \nPress enter to continue.");
-                Console.ReadLine();
+                Console.WriteLine($"Your user ID is {userID}. Keep this handy to login again. \nPress enter to continue.");//stream
+                Console.ReadLine();//stream
                 return newUsr;
             }
             else if (newUsr == "no" || newUsr == "n")

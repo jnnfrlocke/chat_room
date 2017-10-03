@@ -14,21 +14,17 @@ namespace ChatRoom
     {
         TcpClient clientSocket;
         NetworkStream stream;
-        //int userID;
-        //login
 
         public Client(string IP, int port)
         {
             clientSocket = new TcpClient();
             clientSocket.Connect(IPAddress.Parse("127.0.0.1"), port);
             stream = clientSocket.GetStream();
-            //StayConnected();
             VerifyConnection();
         }
 
         //send notification to server, server sends notification to users
-
-        //public void 
+        
 
             private void VerifyConnection()
         {
@@ -38,18 +34,8 @@ namespace ChatRoom
             SendUserIDAnswer();
         }
 
-        //private void StayConnected()
-        //{
-        //    //string usrInput = stream.Read(input, 0, input.Length).ToString();
-        //    while (true)
-        //    {
-        //        string inputCommand = UI.GetInput().ToLower();
-        //        if (inputCommand == "exit" || inputCommand == "x")
-        //        {
-        //            break;
-        //        }
-        //    }
-        //}
+        
+
         private void SendUserIDAnswer()
         {
             byte[] userNameRequest = new byte[256];
@@ -58,6 +44,12 @@ namespace ChatRoom
             string newUser = UI.GetInput();
             byte[] newUsr = Encoding.ASCII.GetBytes(newUser);
             stream.Write(newUsr, 0, newUsr.Length);
+        }
+
+        private void GetUserName()
+        {
+            Recieve();
+            Send();
         }
 
         public void Send()
@@ -73,6 +65,19 @@ namespace ChatRoom
             stream.Read(recievedMessage, 0, recievedMessage.Length);
             UI.DisplayMessage(Encoding.ASCII.GetString(recievedMessage));
         }
+
+        //private void StayConnected()
+        //{
+        //    //string usrInput = stream.Read(input, 0, input.Length).ToString();
+        //    while (true)
+        //    {
+        //        string inputCommand = UI.GetInput().ToLower();
+        //        if (inputCommand == "exit" || inputCommand == "x")
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
 
     }
 }

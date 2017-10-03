@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+//using ChatRoom;
 
-namespace ChatRoom
+namespace Server
 {
-    class Dictionary
+    public class Dictionary
     {
-        Dictionary<int, string> dictionary = new Dictionary<int, string>();
+        public Dictionary<int, string> dictionary = new Dictionary<int, string>();
         int newID;
 
         public int AddUserToDictionary(string userName)
@@ -20,8 +21,7 @@ namespace ChatRoom
         private int CreateUserID()
         {
             int dictionaryLength = dictionary.Count();
-            string dictLength = dictionaryLength.ToString();
-            if (dictionary.ContainsValue(dictLength))
+            if (dictionary.ContainsKey(dictionaryLength))
             {
                 newID = dictionaryLength ++;
                 return newID;
