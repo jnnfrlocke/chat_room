@@ -18,6 +18,12 @@ namespace Server
         public string UserId;
         public int userID;
 
+        public void SendMesage(byte[] message)
+        {
+            stream.Write(message, 0, message.Length);
+        }
+        public static string GetInput() => Console.ReadLine();
+
         public void NewClient(NetworkStream Stream, TcpClient Client)
         {
             stream = Stream;
@@ -25,11 +31,12 @@ namespace Server
             UserId = "495933b6-1762-47a1-b655-483510072e73";
         }
 
-        public string GetUser()
+        public string GetUser() //implement communication class?
         {
             string askIfNewUser = "Are you a new user?";
             byte[] newUserQuestion = Encoding.ASCII.GetBytes(askIfNewUser);
-            stream.Write(newUserQuestion, 0, newUserQuestion.Length);
+            SendMesage(newUserQuestion);
+            //stream.Write(newUserQuestion, 0, newUserQuestion.Length);
             
             byte[] newUser = new byte[256];
             stream.Read(newUser, 0, newUser.Length);
@@ -46,8 +53,7 @@ namespace Server
                 string userToAdd = Encoding.ASCII.GetString(usrName).TrimEnd('\0');
                 Dictionary newDict = new Dictionary();
                 newDict.AddUserToDictionary(userToAdd);
-                //string usrName = Encoding.ASCII.GetBytes(Encoding.ASCII.GetString(usrName)); // TODO: then assign user id on server
-                stream.Write(userName, 0, userName.Count()); //send/save to dictionary on server
+                stream.Write(userName, 0, userName.Count()); 
                 // TODO: get userID from server
                 Console.WriteLine($"Your user ID is {userID}. Keep this handy to login again. \nPress enter to continue.");//stream
                 Console.ReadLine();//stream
@@ -55,7 +61,9 @@ namespace Server
             }
             else if (newUsr == "no" || newUsr == "n")
             {
-                Console.WriteLine("Please enter your user ID.");
+                string askUserId = "Please enter your user ID.";
+                byte[] askForUserID = Encoding.ASCII.GetBytes(askUserId);
+                SendMesage(askForUserID);
                 byte[] currentUser = Encoding.ASCII.GetBytes(Console.ReadLine());
                 // TODO: find user in dictionary
                 //if (current user is in dictionary){

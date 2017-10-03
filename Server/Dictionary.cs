@@ -15,6 +15,7 @@ namespace Server
         public int AddUserToDictionary(string userName)
         {
             dictionary.Add(CreateUserID(), userName);
+            // save to file
             return newID;
         }
 

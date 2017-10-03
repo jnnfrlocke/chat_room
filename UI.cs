@@ -12,9 +12,6 @@ namespace ChatRoom
         {
             Console.WriteLine(message);
         }
-        public static string GetInput()
-        {
-            return Console.ReadLine();
-        }
+        public static string GetInput() => Console.ReadLine();
     }
 }
