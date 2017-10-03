@@ -52,6 +52,12 @@ namespace ChatRoom
             Send();
         }
 
+        private void Chat()
+        {
+                Send();
+                Recieve();
+        }
+
         public void Send()
         {
             string messageString = UI.GetInput();

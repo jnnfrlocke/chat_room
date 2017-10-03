@@ -52,43 +52,7 @@ namespace Server
             //    }
             //}
         }
-
-        //public string GetUser()
-        //{
-        //    string askIfNewUser = "Are you a new user?";
-        //    byte[] newUserQuestion = Encoding.ASCII.GetBytes(askIfNewUser);
-        //    stream.Write(newUserQuestion, 0, newUserQuestion.Length);
-
-        //    byte[] newUser = new byte[256];
-        //    stream.Read(newUser, 0, newUser.Length);
-        //    string newUsr = Encoding.ASCII.GetString(newUser);
-        //    //string newUser = Console.ReadLine().ToLower();
-        //    if (newUsr == "yes" || newUsr == "y")
-        //    {
-        //        byte[] userName = new byte[256];
-        //        stream.Write(userName, 0, userName.Count());
-        //        byte[] usrName = new byte[256];
-        //        stream.Read(usrName, 0, usrName.Length);
-        //        //string usrName = Encoding.ASCII.GetBytes(Encoding.ASCII.GetString(usrName)); // TODO: then assign user id on server
-        //        stream.Write(userName, 0, userName.Count()); //send/save to dictionary on server
-        //        // TODO: get userID from server
-        //        Console.WriteLine($"Your user ID is 01. Keep this handy to login again. \nPress enter to continue.");
-        //        Console.ReadLine();
-        //        return newUsr;
-        //    }
-        //    else if (newUsr == "no" || newUsr == "n")
-        //    {
-        //        Console.WriteLine("Please enter your user ID.");
-        //        byte[] currentUser = Encoding.ASCII.GetBytes(Console.ReadLine());
-        //        // TODO: find user in dictionary
-        //        //if (current user is in dictionary){
-        //        // Console.WriteLine("Enter a message to begin chatting.");
-        //        //}
-        //        return "userName";
-        //    }
-        //    return " ";
-        //}
-
+          
             //public void KeepConnectionOpen()
             //{
             //    client.GetUser();
@@ -114,7 +78,7 @@ namespace Server
             //    }
             //}
 
-            public void VerifyConnection(TcpClient clientSocket)
+        public void VerifyConnection(TcpClient clientSocket)
         {
             string connectionMessage = "Connected\n";
             byte[] connectionMsg = Encoding.ASCII.GetBytes(connectionMessage);
@@ -122,7 +86,7 @@ namespace Server
             stream = clientSocket.GetStream();
             stream.Write(connectionMsg, 0, connectionMsg.Length);
             //Netw/*orkStream */stream = clientSocket.GetStream();
-            client.NewClient(stream, clientSocket);
+            client.AddNewClient(stream, clientSocket);
             //string user = GetUser();
             //KeepConnectionOpen();
         }
